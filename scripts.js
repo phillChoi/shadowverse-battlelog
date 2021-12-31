@@ -48,7 +48,7 @@ $(document).ready(function(){
 })
 
 function addRows(className = "",wins1=0,loss1=0,winrate1=0,wins2=0,loss2=0,winrate2=0,total=0,totalWinrate=0){
-    $("table").append("<tr class=dataRow></tr>");
+    $("#dataTable").append("<tr class=dataRow></tr>").hide;
     let newRow = $("tr").last();
     newRow.append("<td><input class=className value='"+className+"'></input></td>");
     newRow.append("<td><input type=number min=0 step=1 class=wins1 value='"+wins1+"'></input></td>");
@@ -59,7 +59,7 @@ function addRows(className = "",wins1=0,loss1=0,winrate1=0,wins2=0,loss2=0,winra
     newRow.append("<td class=winrate2>"+winrate2+"%</td>");
     newRow.append("<td class=total>"+total+"</td>");
     newRow.append("<td class=totalWinrate>"+totalWinrate+"%</td>");
-    newRow.append("<div class='removeRow'>X</div>");
+    newRow.append("<button class='removeRow'>X</button>");
 }
 function saveRow(){
     const saveData = [];
@@ -96,4 +96,8 @@ function calcTotal(wins1,loss1,wins2,loss2){
     loss2 = parseInt(loss2);
     let answer = wins1+loss1+wins2+loss2;
     return answer;
+}
+
+function testAnimation(){
+    $(".removeRow").slideDown("slow")
 }

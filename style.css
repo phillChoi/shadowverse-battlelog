@@ -1,19 +1,24 @@
 table{
     border: 1rem solid black;
+    max-width: 800px;
 }
 td{
-    border: 1px solid black;
+    border: solid black;
     height: 50px;
     padding: 0%;
 }
-tr{
-    padding: 0%;
+.heading{
+    text-align: center;
 }
-.removeRow{
-    display:block;
-    padding: 10px;
-    border: 2px solid black;
-    background-color: red;
+.winrate1,.winrate2,.totalWinrate,.total{
+    text-align: center;
+}
+tr{
+    width: 100%;
+}
+tr.data{
+    padding: 0%;
+    display: inline-table;
 }
 input.className{
     border:none;
@@ -21,4 +26,14 @@ input.className{
     display: block;
     box-sizing: border-box;
     height: 100%;
+}
+.removeRow{
+    display: none;
+    padding: 10px;
+    border: 2px solid black;
+    background-color: red;
+    
+}
+.dataWrapper{
+    display: block;
 }

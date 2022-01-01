@@ -1,3 +1,5 @@
+let showSettings = false;
+
 //Save table data to localStorage
 $(window).on("beforeunload",function(){
     saveRow();
@@ -21,8 +23,8 @@ $(window).on("load",function(){
 });
 
 $(document).ready(function(){
-    $(document.body).on("click",'.removeRow',function(){
-        $(this).parent().remove();
+    $(document.body).on("click",'button[name="removeRow"]',function(){
+        $(this).closest("tr").remove();
     });
     $(document.body).on("input",".wins1, .loss1, .wins2, .loss2",function(){
         let anchor = $(this).closest(".dataRow");
@@ -48,36 +50,41 @@ $(document).ready(function(){
 })
 
 function addRows(className = "",wins1=0,loss1=0,winrate1=0,wins2=0,loss2=0,winrate2=0,total=0,totalWinrate=0){
-    $("#dataTable").append("<tr class=dataRow></tr>").hide;
-    let newRow = $("tr").last();
-    newRow.append("<td><input class=className value='"+className+"'></input></td>");
-    newRow.append("<td><input type=number min=0 step=1 class=wins1 value='"+wins1+"'></input></td>");
-    newRow.append("<td><input type=number min=0 step=1 class=loss1 value='"+loss1+"'></input></td>");
-    newRow.append("<td class=winrate1>"+winrate1+"%</td>");
-    newRow.append("<td><input type=number min=0 step=1 class=wins2 value='"+wins2+"'></input></td>");
-    newRow.append("<td><input type=number min=0 step=1 class=loss2 value='"+loss2+"'></input></td>");
-    newRow.append("<td class=winrate2>"+winrate2+"%</td>");
-    newRow.append("<td class=total>"+total+"</td>");
-    newRow.append("<td class=totalWinrate>"+totalWinrate+"%</td>");
-    newRow.append("<button class='removeRow'>X</button>");
+    $("#dataTable").find("tbody").append("<tr class=dataRow></tr>");
+    let newRow = $("#dataTable").find("tbody").find("tr").last();
+    let data = (`
+    <td><div class=dataWrapper><input class=className value='${className}'></input></div></td>
+    <td><div class=dataWrapper><input type=number min=0 step=1 class=wins1 value='${wins1}'></input></div></td>
+    <td><div class=dataWrapper><input type=number min=0 step=1 class=loss1 value='${loss1}'></input></div></td>
+    <td class=winrate1><div class=dataWrapper>${winrate1}%</div></td>
+    <td><div class=dataWrapper><input type=number min=0 step=1 class=wins2 value='${wins2}'></input></div></td>
+    <td><div class=dataWrapper><input type=number min=0 step=1 class=loss2 value='${loss2}'></input></div></td>
+    <td class=winrate2><div class=dataWrapper>${winrate2}%</div></td>
+    <td class=total><div class=dataWrapper>${total}</div></td>
+    <td class=totalWinrate><div class=dataWrapper>${totalWinrate}%</div></td>
+    <td class=options><button type="button" name="removeRow" class="btn btn-danger btn-sm">X</button></td>`);
+    newRow.append(data);
+    if(showSettings == true){
+        $(".options").addClass("reveal");
+    }
+    newRow.find(".dataWrapper").hide();
+    newRow.find(".dataWrapper").fadeIn("slow");
 }
 function saveRow(){
     const saveData = [];
-    $("tr").each(function(){
-        if($(this).hasClass("heading") != true){
-            let data = {
-                className: $("input.className",this).val(),
-                wins1: $("input.wins1",this).val(),
-                loss1: $("input.loss1",this).val(),
-                winrate1: $(".winrate1",this).text().slice(0,-1),
-                wins2: $("input.wins2",this).val(),
-                loss2: $("input.loss2",this).val(),
-                winrate2: $(".winrate2",this).text().slice(0,-1),
-                total: $(".total",this).text(),
-                totalWinrate: $(".totalWinrate",this).text().slice(0,-1)
-            };
-            saveData.push(data);
+    $(".dataRow").each(function(){
+        let data = {
+            className: $("input.className",this).val(),
+            wins1: $("input.wins1",this).val(),
+            loss1: $("input.loss1",this).val(),
+            winrate1: $(".winrate1",this).text().slice(0,-1),
+            wins2: $("input.wins2",this).val(),
+            loss2: $("input.loss2",this).val(),
+            winrate2: $(".winrate2",this).text().slice(0,-1),
+            total: $(".total",this).text(),
+            totalWinrate: $(".totalWinrate",this).text().slice(0,-1)
         };
+        saveData.push(data);
     });
     let saveString = JSON.stringify(saveData);
     localStorage.setItem('save',saveString);
@@ -99,5 +106,12 @@ function calcTotal(wins1,loss1,wins2,loss2){
 }
 
 function testAnimation(){
-    $(".removeRow").slideDown("slow")
+    if($(".options").css("display")=="none"){
+        showSettings = true;
+        $(".options").addClass("reveal");
+    } else{
+        showSettings = false;
+        $(".options").removeClass("reveal");
+    }
 }
+        

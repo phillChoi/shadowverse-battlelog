@@ -1,26 +1,60 @@
-<html>
+<!DOCTYPE html>
+<html lnag='en'>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="jquery-3.6.0.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="scripts.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
         <h1>This is live</h1>
-        <table id="dataTable">
-            <tr class="heading">
-                <th>Class</th>
-                <th>Win (1st)</th>
-                <th>Loss (1st)</th>
-                <th>Winrate (1st)</th>
-                <th>Win (2nd)</th>
-                <th>Loss (2nd)</th>
-                <th>Winrate (2nd)</th>
-                <th>Total Games</th>
-                <th>Total Winrate</th>
-            </tr>
-        </table>
+        <div class="container">
+            <div class="row">
+                <table id="dataTable" class="table table-striped table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr class="heading">
+                            <th scope="col">Class</th>
+                            <th scope="col">Win (1st)</th>
+                            <th scope="col">Loss (1st)</th>
+                            <th scope="col">Winrate (1st)</th>
+                            <th scope="col">Win (2nd)</th>
+                            <th scope="col">Loss (2nd)</th>
+                            <th scope="col">Winrate (2nd)</th>
+                            <th scope="col">No. of Games</th>
+                            <th scope="col">Class Winrate</th>
+                            <th class="options" scope="col">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                        <table id="totalTable" class="w-25 table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col-1">Total Games Played</th>
+                                    <th>Total Winrate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="grandTotalWins">0</td>
+                                    <td id="grandTotalWinrate">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
         <button onclick="addRows()">Add Row</button>
         <button onclick="testAnimation()">Hide Divs</button>
+        <input type="button" value="Start machine">
+        <!--Bootstrap Javascript Scripts-->
+        <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
     </body>
 </html>  

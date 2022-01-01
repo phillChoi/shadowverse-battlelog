@@ -1,20 +1,16 @@
-table{
-    border: 1rem solid black;
+body{
+   
+}
+
+/*STYLING FOR THE TABLES*/
+#dataTable{
     max-width: 800px;
 }
-td{
-    border: solid black;
-    height: 50px;
-    padding: 0%;
-}
-.heading{
-    text-align: center;
-}
-.winrate1,.winrate2,.totalWinrate,.total{
+td.winrate1,td.winrate2,td.totalWinrate,td.total, td.options{
     text-align: center;
 }
 tr{
-    width: 100%;
+    
 }
 tr.data{
     padding: 0%;
@@ -29,11 +25,27 @@ input.className{
 }
 .removeRow{
     display: none;
+    height: 100%;
     padding: 10px;
     border: 2px solid black;
     background-color: red;
     
 }
-.dataWrapper{
-    display: block;
+table input{
+    
+    background:transparent;
+    border:none;
+    outline-width:0;
+}
+.className{
+
+}
+.options{
+    display: none;
+}
+.reveal{
+    display:block;
+}
+td button{
+
 }
